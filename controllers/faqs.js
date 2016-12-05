@@ -18,3 +18,4 @@ faqs.post = function (req, res) {
 	});
 
 };
+module.exports = faqs;
