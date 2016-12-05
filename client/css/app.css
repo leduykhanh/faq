@@ -42,6 +42,16 @@ i{
 .fix-header{
 	
 }
+.faq-btn{
+	position:fixed;
+	bottom:0;
+	right:0;
+	height: 80px;
+	width: 200px;
+}
+.faq-modal .modal-dialog{
+	right:0;
+}
 @media screen and (max-device-width: 768px) {
    .col-sm-6:nth-child(2n+1) {
 		clear: both;

@@ -19,7 +19,7 @@ export default class LoginForm extends React.Component {
   render() {
     var userGlyphicon = <Glyphicon glyph="user" />;
     var passwordGlyphicon = <Glyphicon glyph="lock" />;
-	   console.log("csa submit");
+	   
     return(
 	   <div className="col-md-4 col-md-offset-4 ">
           <Form  role="form" className="col-xs-12 text-center"

@@ -1,14 +1,14 @@
 var mongoose = require('mongoose');
 var q = require('q');
-
+var Schema = mongoose.Schema;
 //defining schema for videos table
 var categorySchema = new mongoose.Schema({
 	  name: { type: String }, 
 	  description: { type: String }, 
-	  user: {type: Number, ref: 'User'},
-	  faqs: [{ type: Number, ref: 'Faq' }]
+	  user: {type: Schema.Types.ObjectId, ref: 'User'},
+	  faqs: [{ type: Schema.Types.ObjectId, ref: 'Faq' }]
 });
-var Category = mongoose.model('videos', categorySchema);
+var Category = mongoose.model('categories', categorySchema);
 //Initlizing interface object of this model.
 var categoriesModel = {};
 

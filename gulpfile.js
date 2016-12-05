@@ -39,7 +39,7 @@ gulp.task('deploy', function (){
 });
 
 gulp.task('watch', function () {
-	gulp.watch(['./client/jsx/*.jsx','./client/jsx/components/*.jsx'], ['scripts']);
+	gulp.watch(['./client/jsx/*.jsx','./client/deploy/*.jsx','./client/jsx/components/*.jsx'], ['scripts']);
 });
 
 // When running 'gulp' on the terminal this task will fire.
@@ -69,6 +69,10 @@ function bundleApp(isProduction) {
 	// us use modules in the front end.
 	var appBundler = browserify({
     	entries: './client/jsx/app.jsx',
+    	debug: true
+  	})
+	var deploy = browserify({
+    	entries: './client/deploy/Deploy.jsx',
     	debug: true
   	})
 
@@ -101,5 +105,11 @@ function bundleApp(isProduction) {
 	    .bundle()
 	    .on('error',gutil.log)
 	    .pipe(source('bundle.js'))
+	    .pipe(gulp.dest('./client/js/'));
+	deploy
+	  	.transform("babelify", {presets: ["es2015", "react"]})
+	    .bundle()
+	    .on('error',gutil.log)
+	    .pipe(source('deploy.js'))
 	    .pipe(gulp.dest('./client/js/'));
 }

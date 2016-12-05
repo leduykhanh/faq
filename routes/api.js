@@ -1,5 +1,6 @@
 var users = require('../controllers/users');
 var categories = require('../controllers/categories');
+var faqs = require('../controllers/faqs');
 var helpers = require('../helpers/helperFunctions');
 
 var routesAPI = function(app){
@@ -11,6 +12,7 @@ var routesAPI = function(app){
 	app.get('/categories', helpers.isAuthenticated, categories.get);
 	app.get('/category', helpers.isAuthenticated, categories.getOne);
 	app.post('/category/ratings', helpers.isAuthenticated, categories.rate);
+	app.post('/faq', helpers.isAuthenticated, faqs.post);
 }
 
 

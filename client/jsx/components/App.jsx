@@ -4,7 +4,7 @@ import LoginForm from './LoginForm.jsx';
 import LoginStore from '../stores/LoginStore.jsx';
 import FaqServices from '../services/FaqServices.jsx';
 import AuthenticationServices from '../services/AuthenticationServices.jsx';
-import { Input, Row, Col, Image, Button, OverlayTrigger, Tooltip } from 'react-bootstrap';
+import { Input, Row, Col, Image, Button, OverlayTrigger, Tooltip, Modal } from 'react-bootstrap';
 export default class App extends React.Component {
 
   constructor(){
@@ -37,13 +37,16 @@ export default class App extends React.Component {
     var itemToRender = <LoginForm data={testData} refresh={this.refresh.bind(this)} />;
 	
 	if(this.state.sessionId){
-		itemToRender = <div>
+		itemToRender =
+			<div>
 				<div className="text-right profile row">
 					<Image src="img/blank_avatar_thumbnail.jpg" className="img-circle img-responsive" />
 					<Button onClick={this.logout.bind(this)} className="pull-right">Log out</Button>
 				</div>
-				<Row><VideosList /></Row>
-				</div>;
+				<hr />
+				<div><VideosList /></div>
+
+			</div>;
 		}
     return (
 	<div>

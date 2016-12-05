@@ -6,6 +6,7 @@ import FaqServices from '../services/FaqServices.jsx';
 import React from 'react';
 import { LinkContainer } from 'react-router-bootstrap';
 import LazyLoad from 'react-lazy-load';
+import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
 export default class VideoList extends React.Component {
 
  constructor() {
@@ -28,19 +29,22 @@ export default class VideoList extends React.Component {
 		
     }
   fetchMoreVideos(){
-	FaqServices.loadVideosList(LoginStore.sessionId,this.state.videosList.length,4);
+	//FaqServices.loadVideosList(LoginStore.sessionId,this.state.videosList.length,4);
   }
   render() {
+      console.log(this.state.videosList);
     return (
 	  <div>
+          <div>
+              <Button className="btn btn-default">Add new faq</Button>
+          </div>
 		<div className='margin-top row'>
-			{this.state.videosList ? this.state.videosList.map(function (item, i) {
-				return <Col key={i} xs={12} md={3} sm={6} className="video-list"> 
-						  <LinkContainer to={'detail?videoId='+item._id}>
-							<VideoItem controls={false} type="list" width={200} height={200} editing={false} video={item} />
-						  </LinkContainer>
-						</Col>;
-				}):{}}
+            <BootstrapTable data={ this.state.videosList }>
+                <TableHeaderColumn dataField='_id' isKey>Category ID</TableHeaderColumn>
+                <TableHeaderColumn dataField='name' filter={ { type: 'TextFilter', delay: 1000 } }>Faq Name</TableHeaderColumn>
+                <TableHeaderColumn dataField='description'>Faq Description</TableHeaderColumn>
+                <TableHeaderColumn >Action</TableHeaderColumn>
+            </BootstrapTable>
 
 		</div>
 		<div>
@@ -48,7 +52,7 @@ export default class VideoList extends React.Component {
 				height={300}
 				onContentVisible={this.fetchMoreVideos.bind(this)}
 				>
-				<div>Fetching more videos...</div>
+				<div>Fetching more FAQs...</div>
 			</LazyLoad>
 		</div>
 	 </div>
