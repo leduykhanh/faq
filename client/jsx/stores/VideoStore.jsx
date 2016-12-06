@@ -23,31 +23,38 @@ class VideoStore extends BaseStore  {
 				5
 			]
 		};
-        this._videosList = [];
+        this._faqsList = [];
+		this._categories = [];
 		this._videoDetail = null;
     }
 	_registerToActions(action) {
         switch (action.actionType) {
             case "LOADLIST":
-				this._videosList = this._videosList.concat(action.list);
+				this._faqsList = this._faqsList.concat(action.data);
 				this.emitChange();
 				break;
 			case "LOADDETAIL":
 				this._videoDetail = action.data;
 				this.emitChange();
 				break;
+			case "LOADCATEGORIES":
+				this._categories = action.data;
+				this.emitChange();
+				break;
 				}
 		}
-				
-	get videosList() {
-        return this._videosList;
+	get categories(){
+		return this._categories;
+	}
+	get faqsList() {
+        return this._faqsList;
     }
 	get videoDetail() {
         return this._videoDetail;
     }
 	updateVideosList(l){
-		this._videosList = l;
-		//console.log(this._videosList);
+		this._faqsList = l;
+		//console.log(this._faqsList);
 	}
 }
 

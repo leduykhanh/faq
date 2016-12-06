@@ -6,8 +6,8 @@ import cookie from 'react-cookie';
 import md5 from 'js-md5'
 class FaqServices extends BaseServices {
 
-    loadVideosList(sessionID,skip=0,limit=8){
-		this.handleGet(Constants.CATEGORY_LIST_URL+"?sessionId="+sessionID+"&skip="+skip+"&limit="+limit,
+    loadCategoriesList(){
+		this.handleGet(Constants.CATEGORY_LIST_URL,
 		{},function(response){
                 if(response.status=="success"){
                     //VideoStore.updateVideosList(response.data);
@@ -30,6 +30,16 @@ class FaqServices extends BaseServices {
 			 function(response){
                 if(response.status=="success"){
                     console.log(response.data);
+                }
+            });
+	}
+
+	loadFaqsList(sessionID,skip=0,limit=8){
+		this.handleGet(Constants.FAQ_LIST_URL+"?sessionId="+sessionID+"&skip="+skip+"&limit="+limit,
+		{},function(response){
+                if(response.status=="success"){
+                    //VideoStore.updateVideosList(response.data);
+					VideosActions.loadFaqList(response.data);
                 }
             });
 	}

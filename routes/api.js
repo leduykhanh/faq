@@ -9,10 +9,11 @@ var routesAPI = function(app){
 	app.get('/user/logout', helpers.isAuthenticated, users.logout);
 
 	//category routes
-	app.get('/categories', helpers.isAuthenticated, categories.get);
+	app.get('/categories', categories.get);
 	app.get('/category', helpers.isAuthenticated, categories.getOne);
 	app.post('/category/ratings', helpers.isAuthenticated, categories.rate);
 	app.post('/faq', helpers.isAuthenticated, faqs.post);
+	app.get('/faqs', helpers.isAuthenticated, faqs.get);
 }
 
 

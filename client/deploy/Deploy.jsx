@@ -18,20 +18,20 @@ export default class App extends React.Component {
   }
     componentWillMount() {
         this.setState({
-            categories: VideoStore.videosList,
+            categories: VideoStore.faqsList,
         });
 		VideoStore.addChangeListener(this._onVideoStoreUpdateListener.bind(this));
         LoginStore.addChangeListener(this._onLoginListener.bind(this));
     }
     componentDidMount(){
         this.setState({
-            categories: VideoStore.videosList,
+            categories: VideoStore.faqsList,
         });
     }
 
   _onVideoStoreUpdateListener() {
         this.setState({
-            categories: VideoStore.videosList,
+            categories: VideoStore.faqsList,
         });
 
     }

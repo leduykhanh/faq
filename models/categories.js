@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var q = require('q');
 var Schema = mongoose.Schema;
-//defining schema for videos table
+//defining schema for categories table
 var categorySchema = new mongoose.Schema({
 	  name: { type: String }, 
 	  description: { type: String }, 
@@ -12,7 +12,7 @@ var Category = mongoose.model('categories', categorySchema);
 //Initlizing interface object of this model.
 var categoriesModel = {};
 
-//Function to seed videos data.
+//Function to seed categories data.
 categoriesModel.seed = function(){
 	var categories=Array();
 	categories.push({name: 'Cat 1', description:'Cat 1 description', user:1});
@@ -48,5 +48,54 @@ categoriesModel.get = function(skip, limit){
 
 	return results.promise;
 	
+}
+
+//function to get single Category by its id.
+categoriesModel.getOne = function(id){
+	var results = q.defer();
+
+	if(!id){
+		results.reject({status:'error', error:'Category Id not supplied.'});
+	}
+	Category.findOne({_id:id},function(err, dbCategory) {
+		if (err){
+			results.reject(err);
+		} 
+
+		if(dbCategory){
+			results.resolve(dbCategory);	
+		} else{
+			results.reject({status:'error', error:'Invalid Category Id supplied.'});	
+		}
+		
+	});
+
+	return results.promise;
+	
+}
+categoriesModel.post = function(id, faq_id){
+	var results = q.defer();
+
+	if(!id){
+		results.reject({status:'error', error:'Category Id not supplied.'});
+	}
+	Category.findOne({_id:id},function(err, dbCategory) {
+		if (err){
+			results.reject(err);
+		}
+
+		if(dbCategory){
+			results.resolve(dbCategory);
+			dbCategory.faqs.push(faq_id);
+			dbCategory.markModified('array');
+			dbCategory.save();
+		} else{
+			results.reject({status:'error', error:'Invalid Category Id supplied.'});
+		}
+
+	});
+
+	return results.promise;
+
 }
 module.exports = categoriesModel;

@@ -1,6 +1,8 @@
 import React from 'react';
 import {FormControl} from 'react-bootstrap';
-export default class VideoList extends React.Component {
+import {NumberPicker, DropdownList, SelectList} from "react-widgets";
+import VideoStore  from '../stores/VideoStore.jsx';
+export default class FaqItem extends React.Component {
 
     constructor() {
         super();
@@ -10,6 +12,7 @@ export default class VideoList extends React.Component {
         };
     }
     render(){
+        const dropDown = [];
         return(
             <div>
                 <div className="form-group">

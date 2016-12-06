@@ -1,5 +1,5 @@
 import React from 'react';	
-import VideosList from './VideosList.jsx';
+import FaqsList from './FaqsList.jsx';
 import LoginForm from './LoginForm.jsx';
 import LoginStore from '../stores/LoginStore.jsx';
 import FaqServices from '../services/FaqServices.jsx';
@@ -10,16 +10,17 @@ export default class App extends React.Component {
   constructor(){
     super();
 	this.state = {
-		videosList : [],
+		faqsList : [],
 		sessionId : LoginStore.isLoggedIn(),
 	};
   }
-    refresh(videosList){
-		this.setState({videosList:videosList});
+    refresh(FaqsList){
+		this.setState({faqsList:FaqsList});
   }
   componentWillMount(){
+	  FaqServices.loadCategoriesList();
 	if(LoginStore.isLoggedIn()){
-		FaqServices.loadVideosList(LoginStore.sessionId);
+		FaqServices.loadFaqsList(LoginStore.sessionId);
 		}
 	LoginStore.addChangeListener(this._onLoginListener.bind(this));
   }
@@ -44,7 +45,7 @@ export default class App extends React.Component {
 					<Button onClick={this.logout.bind(this)} className="pull-right">Log out</Button>
 				</div>
 				<hr />
-				<div><VideosList /></div>
+				<div><FaqsList /></div>
 
 			</div>;
 		}

@@ -18,4 +18,20 @@ faqs.post = function (req, res) {
 	});
 
 };
+
+faqs.get = function (req, res) {
+
+	var data = req.body;
+
+	var faqsData = faqModel.get(data);
+	faqsData.then(function(data){
+		var response = {};
+		response.status='success';
+		response.data=data;
+		res.send(response);
+	}, function(err){
+		res.send(err);
+	});
+
+};
 module.exports = faqs;

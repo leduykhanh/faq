@@ -66,6 +66,7 @@
     "react-router-bootstrap": "*",
     "react-sticky": "*",
     "react-tools": "*",
+    "react-widgets": "^3.4.5",
     "vinyl-source-stream": "*"
   },
   "devDependencies": {

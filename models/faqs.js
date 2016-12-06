@@ -1,12 +1,13 @@
 var mongoose = require('mongoose');
 var q = require('q');
 var Schema = mongoose.Schema;
+var categoryModel = require('./categories');
 
 //defining schema for videos table
 var faqSchema = new mongoose.Schema({
 	  question: { type: String },
 	  answer: { type: String },
-	  category: { type: Schema.Types.ObjectId, ref: 'Category' }
+	  category: { type: Number, ref: 'categories' }
 });
 var Faq = mongoose.model('faqs', faqSchema);
 //Initlizing interface object of this model.
@@ -33,7 +34,31 @@ faqsModel.seed = function(){
 //create new faq
 faqsModel.post = function(data){
 	var results = q.defer();
-	console.log(data);
+	var new_faq = new Faq({ data });
+	new_faq.question = data.question;
+	new_faq.answer = data.answer;
+	new_faq.category = data.category;
+	var categoryid = data.category;
+	new_faq.save(function (err,db) {
+	  if (err) results.reject(err);
+
+		categoryModel.post(categoryid, new_faq._id);
+
+
+	  results.resolve(db);
+	});
+	return results.promise;
+}
+
+faqsModel.get = function(){
+	var results = q.defer();
+	Faq.find().populate("category").exec(function(err, dbCategory) {
+		if (err){
+			results.reject(err);
+		}
+
+		results.resolve(dbCategory);
+	});
 	return results.promise;
 }
 module.exports =faqsModel;
