@@ -38,7 +38,7 @@ class VideoStore extends BaseStore  {
 				this.emitChange();
 				break;
 			case "LOADCATEGORIES":
-				this._categories = action.data;
+				this._categories = action.list;
 				this.emitChange();
 				break;
 				}

@@ -31,7 +31,7 @@ export default class App extends React.Component {
 
   _onVideoStoreUpdateListener() {
         this.setState({
-            categories: VideoStore.faqsList,
+            categories: VideoStore.categories,
         });
 
     }
@@ -43,7 +43,7 @@ export default class App extends React.Component {
     }
     showFaq(){
         this.setState({showModal:true});
-        // FaqServices.loadVideosList(LoginStore.sessionId);
+        FaqServices.loadCategoriesList();
     }
   render() {
       var effect = 'zoomin',
