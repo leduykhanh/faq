@@ -1,5 +1,5 @@
 var configs = {};
-configs.applicationPort = 3000;
+configs.applicationPort = 3001;
 configs.dbName = 'Faq';
 configs.dbHost = 'localhost';
 
