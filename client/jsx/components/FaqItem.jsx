@@ -18,7 +18,7 @@ export default class FaqItem extends React.Component {
                 <div className="form-group">
                     <label className="col-xs-6">Category:</label>
                     <div className="col-xs-6">
-                        <DropdownList onChange="" data={dropDown} textField="name" valueField="_id" defaultValue=""></DropdownList>
+                        <DropdownList onChange="" data={dropDown} textField="name" valueField="_id" defaultValue={dropDown[0]._id}></DropdownList>
                     </div>
                 </div>
                 <div className="form-group">
