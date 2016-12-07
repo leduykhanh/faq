@@ -12,13 +12,13 @@ export default class FaqItem extends React.Component {
         };
     }
     render(){
-        const dropDown = [];
+        const dropDown = VideoStore.categories;
         return(
             <div>
                 <div className="form-group">
                     <label className="col-xs-6">Category:</label>
                     <div className="col-xs-6">
-                        <FormControl></FormControl>
+                        <DropdownList onChange="" data={dropDown} textField="name" valueField="_id" defaultValue=""></DropdownList>
                     </div>
                 </div>
                 <div className="form-group">

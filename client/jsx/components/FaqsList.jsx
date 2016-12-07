@@ -7,6 +7,7 @@ import React from 'react';
 import { LinkContainer } from 'react-router-bootstrap';
 import LazyLoad from 'react-lazy-load';
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
+import localizer from 'react-widgets/lib/localizers/simple-number';
 export default class FaqList extends React.Component {
 
  constructor() {
@@ -16,6 +17,7 @@ export default class FaqList extends React.Component {
             faqsList:[],
             showModal:false
         };
+     localizer();
     }
   componentWillMount() {
         this.setState({
