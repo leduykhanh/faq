@@ -85,9 +85,8 @@ categoriesModel.post = function(id, faq_id){
 		}
 
 		if(dbCategory){
-			results.resolve(dbCategory);
 			dbCategory.faqs.push(faq_id);
-			dbCategory.markModified('array');
+			dbCategory.markModified('faqs');
 			dbCategory.save();
 			results.resolve(dbCategory);
 		} else{

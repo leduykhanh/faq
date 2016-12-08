@@ -278,6 +278,14 @@ var FaqItem = function (_React$Component) {
             this.props.changeCurrent(item);
         }
     }, {
+        key: 'changeC',
+        value: function changeC(val) {
+            var item = this.state.item;
+            item.category = val._id;
+            this.setState({ item: item });
+            this.props.changeCurrent(item);
+        }
+    }, {
         key: 'render',
         value: function render() {
             var dropDown = _VideoStore2.default.categories;
@@ -295,7 +303,7 @@ var FaqItem = function (_React$Component) {
                     _react2.default.createElement(
                         'div',
                         { className: 'col-xs-6' },
-                        _react2.default.createElement(_reactWidgets.DropdownList, { onChange: '', data: dropDown, textField: 'name', valueField: '_id', defaultValue: dropDown[0]._id })
+                        _react2.default.createElement(_reactWidgets.DropdownList, { onChange: this.changeC.bind(this), data: dropDown, textField: 'name', valueField: '_id', defaultValue: dropDown[0]._id })
                     )
                 ),
                 _react2.default.createElement(
@@ -323,7 +331,7 @@ var FaqItem = function (_React$Component) {
                     _react2.default.createElement(
                         'div',
                         { className: 'col-xs-6' },
-                        _react2.default.createElement(_reactBootstrap.FormControl, { value: this.state.item.answer })
+                        _react2.default.createElement(_reactBootstrap.FormControl, { onChange: this.changeA.bind(this), value: this.state.item.answer })
                     )
                 )
             );
@@ -446,11 +454,19 @@ var FaqList = function (_React$Component) {
             this.setState({ showModal: false });
         }
     }, {
+        key: 'showCat',
+        value: function showCat(cell, row) {
+            return cell.name;
+        }
+    }, {
+        key: 'deleteAction',
+        value: function deleteAction() {
+            return _react2.default.createElement(_reactBootstrap.Glyphicon, { glyph: 'trash' });
+        }
+    }, {
         key: 'render',
         value: function render() {
-            var showCat = function showCat(cell, row) {
-                return cell.name;
-            };
+
             return _react2.default.createElement(
                 'div',
                 null,
@@ -473,7 +489,7 @@ var FaqList = function (_React$Component) {
                         _react2.default.createElement(
                             _reactBootstrapTable.TableHeaderColumn,
                             { dataField: '_id', isKey: true },
-                            'Category ID'
+                            'Faq ID'
                         ),
                         _react2.default.createElement(
                             _reactBootstrapTable.TableHeaderColumn,
@@ -487,12 +503,12 @@ var FaqList = function (_React$Component) {
                         ),
                         _react2.default.createElement(
                             _reactBootstrapTable.TableHeaderColumn,
-                            { dataField: 'category', dataFormat: showCat },
+                            { dataField: 'category', dataFormat: this.showCat },
                             'Category'
                         ),
                         _react2.default.createElement(
                             _reactBootstrapTable.TableHeaderColumn,
-                            null,
+                            { dataFormat: this.deleteAction },
                             'Action'
                         )
                     )

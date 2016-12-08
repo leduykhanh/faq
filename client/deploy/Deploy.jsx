@@ -1,12 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Button,} from 'react-bootstrap/lib/Button';
-import {Modal} from 'react-bootstrap/lib/Modal';
-import {Panel} from 'react-bootstrap/lib/Panel';
-import {Accordion} from 'react-bootstrap/lib/Accordion';
+import {Button,Modal,Accordion,Panel} from 'react-bootstrap';
 import VideoStore  from '../jsx/stores/VideoStore.jsx';
 import LoginStore from '../jsx/stores/LoginStore.jsx';
 import FaqServices from '../jsx/services/FaqServices.jsx';
+import {Menu,MainButton} from 'react-mfb';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 
@@ -71,7 +69,11 @@ export default class App extends React.Component {
                       <Accordion>
                           {this.state.categories.map(function(item,index){
                               return <Panel header={item.name} eventKey={index}>
-                                  {item.description}
+                                  <ul>
+                                      {item.faqs.map(function(it,id){
+                                          return (<div>Q:{it.question} <br /> A:{it.answer}</div>)
+                                      })}
+                                  </ul>
                                 </Panel>
                           })}
                       </Accordion>

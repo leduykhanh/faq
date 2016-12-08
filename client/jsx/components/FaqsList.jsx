@@ -49,10 +49,14 @@ export default class FaqList extends React.Component {
         FaqServices.createFaq(LoginStore.sessionId,this.state.currentItem);
         this.setState({showModal:false});
     }
-  render() {
-      var showCat = function (cell, row) {
+    showCat(cell, row) {
           return cell.name;
       }
+    deleteAction(){
+        return <Glyphicon glyph="trash" />
+    }
+  render() {
+
     return (
 	  <div>
           <div>
@@ -60,11 +64,11 @@ export default class FaqList extends React.Component {
           </div>
 		<div className='margin-top row'>
             <BootstrapTable data={ this.state.faqsList }>
-                <TableHeaderColumn dataField='_id' isKey>Category ID</TableHeaderColumn>
+                <TableHeaderColumn dataField='_id' isKey>Faq ID</TableHeaderColumn>
                 <TableHeaderColumn dataField='question' filter={ { type: 'TextFilter', delay: 1000 } }>Question</TableHeaderColumn>
                 <TableHeaderColumn dataField='answer'>Faq Description</TableHeaderColumn>
-                <TableHeaderColumn dataField='category' dataFormat={showCat}>Category</TableHeaderColumn>
-                <TableHeaderColumn >Action</TableHeaderColumn>
+                <TableHeaderColumn dataField='category' dataFormat={this.showCat}>Category</TableHeaderColumn>
+                <TableHeaderColumn dataFormat={this.deleteAction}>Action</TableHeaderColumn>
             </BootstrapTable>
 
 		</div>

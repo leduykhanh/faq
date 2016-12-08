@@ -43,7 +43,9 @@ faqsModel.post = function(data){
 	  if (err) results.reject(err);
 	  var catData = categoryModel.post(categoryid, new_faq._id);
 	  catData.then(function(data){
-		results.resolve(data);
+		  data.markModified('faqs');
+		  data.save();
+		  results.resolve(data);
 	}, function(err){
 		results.reject(err);
 	});
