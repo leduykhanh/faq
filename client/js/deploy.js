@@ -159,7 +159,7 @@ var App = function (_React$Component) {
                                                 it.question,
                                                 ' ',
                                                 _react2.default.createElement('br', null),
-                                                ' Q:',
+                                                ' A:',
                                                 it.answer
                                             );
                                         })

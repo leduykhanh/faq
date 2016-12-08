@@ -499,7 +499,7 @@ var FaqList = function (_React$Component) {
                         _react2.default.createElement(
                             _reactBootstrapTable.TableHeaderColumn,
                             { dataField: 'answer' },
-                            'Faq Description'
+                            'Answer'
                         ),
                         _react2.default.createElement(
                             _reactBootstrapTable.TableHeaderColumn,

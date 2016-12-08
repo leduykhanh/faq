@@ -66,7 +66,7 @@ export default class FaqList extends React.Component {
             <BootstrapTable data={ this.state.faqsList }>
                 <TableHeaderColumn dataField='_id' isKey>Faq ID</TableHeaderColumn>
                 <TableHeaderColumn dataField='question' filter={ { type: 'TextFilter', delay: 1000 } }>Question</TableHeaderColumn>
-                <TableHeaderColumn dataField='answer'>Faq Description</TableHeaderColumn>
+                <TableHeaderColumn dataField='answer'>Answer</TableHeaderColumn>
                 <TableHeaderColumn dataField='category' dataFormat={this.showCat}>Category</TableHeaderColumn>
                 <TableHeaderColumn dataFormat={this.deleteAction}>Action</TableHeaderColumn>
             </BootstrapTable>
