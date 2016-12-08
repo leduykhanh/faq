@@ -69,11 +69,11 @@ function bundleApp(isProduction) {
 	// us use modules in the front end.
 	var appBundler = browserify({
     	entries: './client/jsx/app.jsx',
-    	debug: true
+    	debug: false
   	})
 	var deploy = browserify({
     	entries: './client/deploy/Deploy.jsx',
-    	debug: true
+    	debug: false
   	})
 
 	// If it's not for production, a separate vendors.js file will be created
@@ -83,7 +83,7 @@ function bundleApp(isProduction) {
   		// create vendors.js for dev environment.
   		browserify({
 			require: dependencies,
-			debug: true
+			debug: false
 		})
 			.bundle()
 			.on('error', gutil.log)

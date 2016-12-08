@@ -1,11 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Portal from 'react-portal';
-import {Button,Modal,Accordion,Panel} from 'react-bootstrap';
+import {Button,} from 'react-bootstrap/lib/Button';
+import {Modal} from 'react-bootstrap/lib/Modal';
+import {Panel} from 'react-bootstrap/lib/Panel';
+import {Accordion} from 'react-bootstrap/lib/Accordion';
 import VideoStore  from '../jsx/stores/VideoStore.jsx';
 import LoginStore from '../jsx/stores/LoginStore.jsx';
 import FaqServices from '../jsx/services/FaqServices.jsx';
-import {Menu,MainButton} from 'react-mfb';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 

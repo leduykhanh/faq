@@ -8,7 +8,6 @@ import { LinkContainer } from 'react-router-bootstrap';
 import LazyLoad from 'react-lazy-load';
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
 import localizer from 'react-widgets/lib/localizers/simple-number';
-import FlatButton from 'material-ui/FlatButton';
 export default class FaqList extends React.Component {
 
  constructor() {

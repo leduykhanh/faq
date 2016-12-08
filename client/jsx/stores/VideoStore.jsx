@@ -1,5 +1,4 @@
 import React from 'react';
-import cookie from 'react-cookie';
 import BaseStore from './BaseStore.jsx'
 
 class VideoStore extends BaseStore  {

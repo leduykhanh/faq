@@ -1,7 +1,7 @@
 import VideoItem  from './VideoItem.jsx';
 import FaqsList  from './FaqsList.jsx';
 import VideoStore  from '../stores/VideoStore.jsx';
-import { Input, Row, Col, Badge, Button, OverlayTrigger, Tooltip } from 'react-bootstrap';
+import { Col} from 'react-bootstrap';
 import React from 'react';
 export default class RecommendedVideoList extends FaqsList {
 
