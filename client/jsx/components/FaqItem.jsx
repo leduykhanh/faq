@@ -13,13 +13,13 @@ export default class FaqItem extends React.Component {
     }
     changeQ(val){
         var item = this.state.item;
-        item.question = val;
+        item.question = val.target.value;
         this.setState({item:item});
         this.props.changeCurrent(item);
     }
     changeA(val){
         var item = this.state.item;
-        item.answer = val;
+        item.answer = val.target.value;
         this.setState({item:item});
         this.props.changeCurrent(item);
     }

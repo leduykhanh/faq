@@ -41,8 +41,12 @@ faqsModel.post = function(data){
 	var categoryid = data.category;
 	new_faq.save(function (err,db) {
 	  if (err) results.reject(err);
+	  var catData = categoryModel.post(categoryid, new_faq._id);
+	  catData.then(function(data){
 
-		categoryModel.post(categoryid, new_faq._id);
+	}, function(err){
+		results.reject(err);
+	});
 
 
 	  results.resolve(db);

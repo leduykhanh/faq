@@ -6,7 +6,7 @@ var categorySchema = new mongoose.Schema({
 	  name: { type: String }, 
 	  description: { type: String }, 
 	  user: {type: Schema.Types.ObjectId, ref: 'User'},
-	  faqs: [{ type: Schema.Types.ObjectId, ref: 'Faq' }]
+	  faqs: [{ type: Schema.Types.ObjectId, ref: 'faqs' }]
 });
 var Category = mongoose.model('categories', categorySchema);
 //Initlizing interface object of this model.
@@ -15,9 +15,9 @@ var categoriesModel = {};
 //Function to seed categories data.
 categoriesModel.seed = function(){
 	var categories=Array();
-	categories.push({name: 'Cat 1', description:'Cat 1 description', user:1});
-	categories.push({name: 'Cat 2', description:'Cat 2 description', user:1});
-	categories.push({name: 'Cat 3', description:'Cat 3 description', user:1});
+	categories.push({name: 'Cat 1', description:'Cat 1 description', user:1,faqs:[]});
+	categories.push({name: 'Cat 2', description:'Cat 2 description', user:1,faqs:[]});
+	categories.push({name: 'Cat 3', description:'Cat 3 description', user:1,faqs:[]});
 	
 	Category.collection.insert(categories, function(err, category) {
 		if(err){
@@ -44,7 +44,7 @@ categoriesModel.get = function(skip, limit){
 		} 
 		
 		results.resolve(dbCategory);
-	}).skip(skip).limit(limit);
+	}).populate("faqs").skip(skip).limit(limit);
 
 	return results.promise;
 	
@@ -89,10 +89,11 @@ categoriesModel.post = function(id, faq_id){
 			dbCategory.faqs.push(faq_id);
 			dbCategory.markModified('array');
 			dbCategory.save();
+			results.resolve(dbCategory);
 		} else{
 			results.reject({status:'error', error:'Invalid Category Id supplied.'});
 		}
-
+		
 	});
 
 	return results.promise;
