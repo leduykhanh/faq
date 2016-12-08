@@ -1,7 +1,7 @@
 import FaqItem  from './FaqItem.jsx';
 import VideoStore  from '../stores/VideoStore.jsx';
 import LoginStore  from '../stores/LoginStore.jsx';
-import { Input, Row, Col, Badge, Button, OverlayTrigger, Tooltip, Modal } from 'react-bootstrap';
+import { Input, Row, Col, Badge, Button, OverlayTrigger, Tooltip, Modal,Glyphicon } from 'react-bootstrap';
 import FaqServices from '../services/FaqServices.jsx';
 import React from 'react';
 import { LinkContainer } from 'react-router-bootstrap';
@@ -9,8 +9,6 @@ import LazyLoad from 'react-lazy-load';
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
 import localizer from 'react-widgets/lib/localizers/simple-number';
 import FlatButton from 'material-ui/FlatButton';
-import ContentAdd from 'material-ui/svg-icons/content/add';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 export default class FaqList extends React.Component {
 
  constructor() {
@@ -56,19 +54,14 @@ export default class FaqList extends React.Component {
       var showCat = function (cell, row) {
           return cell.name;
       }
-      var styles = {}
     return (
 	  <div>
-          <MuiThemeProvider>
-              <FlatButton label="Add new faq"
-                  labelPosition="after"
-                  primary={true}
-                  style={styles}
-                    icon={<ContentAdd />} onClick={this.openNew.bind(this)} className="btn btn-default"></FlatButton>
-          </MuiThemeProvider>
+          <div>
+              <Button onClick={this.openNew.bind(this)} className="btn btn-default"><Glyphicon glyph="plus" />Add new faq</Button>
+          </div>
 		<div className='margin-top row'>
             <BootstrapTable data={ this.state.faqsList }>
-                <TableHeaderColumn dataField='_id' isKey>Faq ID</TableHeaderColumn>
+                <TableHeaderColumn dataField='_id' isKey>Category ID</TableHeaderColumn>
                 <TableHeaderColumn dataField='question' filter={ { type: 'TextFilter', delay: 1000 } }>Question</TableHeaderColumn>
                 <TableHeaderColumn dataField='answer'>Faq Description</TableHeaderColumn>
                 <TableHeaderColumn dataField='category' dataFormat={showCat}>Category</TableHeaderColumn>
