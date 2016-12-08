@@ -8,6 +8,9 @@ import { LinkContainer } from 'react-router-bootstrap';
 import LazyLoad from 'react-lazy-load';
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
 import localizer from 'react-widgets/lib/localizers/simple-number';
+import FlatButton from 'material-ui/FlatButton';
+import ContentAdd from 'material-ui/svg-icons/content/add';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 export default class FaqList extends React.Component {
 
  constructor() {
@@ -53,14 +56,19 @@ export default class FaqList extends React.Component {
       var showCat = function (cell, row) {
           return cell.name;
       }
+      var styles = {}
     return (
 	  <div>
-          <div>
-              <Button onClick={this.openNew.bind(this)} className="btn btn-default">Add new faq</Button>
-          </div>
+          <MuiThemeProvider>
+              <FlatButton label="Add new faq"
+                  labelPosition="after"
+                  primary={true}
+                  style={styles}
+                    icon={<ContentAdd />} onClick={this.openNew.bind(this)} className="btn btn-default"></FlatButton>
+          </MuiThemeProvider>
 		<div className='margin-top row'>
             <BootstrapTable data={ this.state.faqsList }>
-                <TableHeaderColumn dataField='_id' isKey>Category ID</TableHeaderColumn>
+                <TableHeaderColumn dataField='_id' isKey>Faq ID</TableHeaderColumn>
                 <TableHeaderColumn dataField='question' filter={ { type: 'TextFilter', delay: 1000 } }>Question</TableHeaderColumn>
                 <TableHeaderColumn dataField='answer'>Faq Description</TableHeaderColumn>
                 <TableHeaderColumn dataField='category' dataFormat={showCat}>Category</TableHeaderColumn>

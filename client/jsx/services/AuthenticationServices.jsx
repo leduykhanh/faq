@@ -14,7 +14,7 @@ class AuthService extends BaseServices {
         },function(response){			
             if (response.status=="success") {
 				AuthActions.login(response.sessionId);
-                FaqServices.loadVideosList(response.sessionId);
+                FaqServices.loadFaqsList(response.sessionId);
 				cookie.save("video-rate", response.sessionId, {maxAge: 10*365*24*3600,path:'/'});
             }
             else if(response.status=="error") {
