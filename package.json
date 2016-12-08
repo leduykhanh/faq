@@ -45,6 +45,7 @@
     "gulp-uglify": "^2.0.0",
     "gulp-util": "*",
     "jest-cli": "^17.0.3",
+    "material-ui": "^0.16.4",
     "mocha": "^3.2.0",
     "mongoose": "*",
     "morgan": "*",
@@ -65,6 +66,7 @@
     "react-router": "^3.0.0",
     "react-router-bootstrap": "*",
     "react-sticky": "*",
+    "react-tap-event-plugin": "^2.0.1",
     "react-tools": "*",
     "react-widgets": "^3.4.5",
     "vinyl-source-stream": "*"

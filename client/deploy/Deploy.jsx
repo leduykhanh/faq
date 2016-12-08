@@ -6,6 +6,8 @@ import VideoStore  from '../jsx/stores/VideoStore.jsx';
 import LoginStore from '../jsx/stores/LoginStore.jsx';
 import FaqServices from '../jsx/services/FaqServices.jsx';
 import {Menu,MainButton} from 'react-mfb';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import FloatingActionButton from 'material-ui/FloatingActionButton';
 
 export default class App extends React.Component {
   constructor(){
@@ -49,7 +51,14 @@ export default class App extends React.Component {
       var effect = 'zoomin',
     pos = 'br',
     method = 'hover';
-    const button = <Button onClick={this.showFaq.bind(this)} className="btn badge faq-btn btn-success">FAQ</Button>;
+    const style = {
+        bottom: 5,
+        right:5,
+        position:"fixed"
+        };
+    const button = <MuiThemeProvider>
+            <FloatingActionButton style={style} onClick={this.showFaq.bind(this)} >FAQ</FloatingActionButton>
+      </MuiThemeProvider>;
 
     return (
         <div>

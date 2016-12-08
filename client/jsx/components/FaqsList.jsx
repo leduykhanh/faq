@@ -15,7 +15,8 @@ export default class FaqList extends React.Component {
 
         this.state = {
             faqsList:[],
-            showModal:false
+            showModal:false,
+            currentItem:null
         };
      localizer();
     }
@@ -35,13 +36,20 @@ export default class FaqList extends React.Component {
 	//FaqServices.loadfaqsList(LoginStore.sessionId,this.state.faqsList.length,4);
   }
     openNew(){
+        this.state.currentItem = {"category":VideoStore.categories[0]._id,"question":"test","answer":"test"};
         this.setState({showModal:true});
     }
     close(){
         this.setState({showModal:false});
     }
+    changeCurrent(item) {
+        this.setState({currentItem:item});
+    }
+    save(){
+        FaqServices.createFaq(LoginStore.sessionId,this.state.currentItem);
+        this.setState({showModal:false});
+    }
   render() {
-      console.log(this.state.faqsList);
       var showCat = function (cell, row) {
           return cell.name;
       }
@@ -73,10 +81,10 @@ export default class FaqList extends React.Component {
                 <Modal.Title>Add new Faq</Modal.Title>
               </Modal.Header>
               <Modal.Body>
-                <FaqItem />
+                <FaqItem item={this.state.currentItem} changeCurrent={this.changeCurrent.bind(this)}/>
               </Modal.Body>
               <Modal.Footer>
-                <Button onClick={this.openNew.bind(this)} className="btn btn-default">Save</Button>
+                <Button onClick={this.save.bind(this)} className="btn btn-default">Save</Button>
               </Modal.Footer>
             </Modal>
 	 </div>

@@ -7,7 +7,7 @@ var categoryModel = require('./categories');
 var faqSchema = new mongoose.Schema({
 	  question: { type: String },
 	  answer: { type: String },
-	  category: { type: Number, ref: 'categories' }
+	  category: { type: Schema.Types.ObjectId, ref: 'categories' }
 });
 var Faq = mongoose.model('faqs', faqSchema);
 //Initlizing interface object of this model.

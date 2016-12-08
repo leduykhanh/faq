@@ -3,6 +3,7 @@ export default {
 	LOGOUT_URL: '/user/logout',
 	CATEGORY_LIST_URL: '/categories',
 	FAQ_LIST_URL: '/faqs',
+	FAQ_URL: '/faq',
 	VIDEO_URL: '/video',
 	VIDEO_RATING_URL: '/video/ratings'
 	}

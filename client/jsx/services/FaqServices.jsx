@@ -33,6 +33,16 @@ class FaqServices extends BaseServices {
                 }
             });
 	}
+	createFaq(sessionID, data){
+		this.handlePost(Constants.FAQ_URL+"?sessionId="+sessionID,
+		    data,
+			 function(response){
+                if(response.status=="success"){
+                    VideosActions.loadFaqList(response.data);
+                }
+            });
+	}
+
 
 	loadFaqsList(sessionID,skip=0,limit=8){
 		this.handleGet(Constants.FAQ_LIST_URL+"?sessionId="+sessionID+"&skip="+skip+"&limit="+limit,
